@@ -29,7 +29,7 @@ const Detail = () => {
     getDetail();
   }, []);
   return (
-    <section className="grid grid-cols-2 h-[100vh]">
+    <section className="grid grid-cols-2 h-[100vh] sm:grid-cols-1">
       <div className="overflow-hidden p-5">
         <img
           src={`https://restaurant-api.dicoding.dev/images/large/${info.pictureId}`}
@@ -37,33 +37,40 @@ const Detail = () => {
           className="object-cover rounded-lg h-full"
         />
       </div>
-      <div className="px-[20px] overflow-y-scroll text-justify p-5">
-        <div className="flex justify-between items-center">
-          <p className="font-bold text-[20px]">{info.name}</p>
-          <div className="flex gap-2 items-center">
-            <p>{info.rating}</p>
-            <div className="flex items-center">
-              {renderStar(Math.floor(info.rating))}
-              {renderStarHalf(info.rating - Math.floor(info.rating))}
-              {renderStarOutline(Math.floor(5 - info.rating))}
+      <div className="px-[20px] overflow-y-scroll text-justify p-5 flex flex-col gap-y-6">
+        <div>
+          <div className="flex justify-between items-center">
+            <p className="font-bold text-[20px]">{info.name}</p>
+            <div className="flex gap-2 items-center">
+              <p>{info.rating}</p>
+              <div className="flex items-center">
+                {renderStar(Math.floor(info.rating))}
+                {renderStarHalf(info.rating - Math.floor(info.rating))}
+                {renderStarOutline(Math.floor(5 - info.rating))}
+              </div>
             </div>
           </div>
+          <p className="text-[#9d9d9e]">
+            {info.address}, {info.city}
+          </p>
         </div>
-        <p className="text-[#9d9d9e]">
-          {info.address}, {info.city}
-        </p>
+        <div>
+          <p className="font-semibold text-[18px]">Summary</p>
+          <p className="">{info.description}</p>
+        </div>
 
-        <p className="font-semibold text-[18px]">Summary</p>
-        <p className="">{info.description}</p>
+        <div>
+          <p className="font-semibold text-[18px]">Menu</p>
+          <Menu menus={info?.menus} />
+        </div>
 
-        <p className="font-semibold text-[18px]">Menu</p>
-        <Menu menus={info?.menus} />
-
-        <p className="font-semibold text-[18px]">Reviews</p>
-        {info?.customerReviews?.map((review, i) => {
-          console.log(review);
-          return <Review review={review} key={i} />;
-        })}
+        <div>
+          <p className="font-semibold text-[18px]">Reviews</p>
+          {info?.customerReviews?.map((review, i) => {
+            console.log(review);
+            return <Review review={review} key={i} rating={info?.rating} />;
+          })}
+        </div>
       </div>
     </section>
   );

@@ -4,9 +4,9 @@ const Header = ({ categorySelected, priceSelected, refresh, openChecked }) => {
   const [val, setVal] = useState({ open: false, price: "", categories: "" });
   return (
     <section className="w-full border-b border-t border-[#d4d3d3] py-4 px-[32px] flex justify-between sm:flex-col xsm:flex-col">
-      <div className="flex gap-x-6 items-center xsm:grid xsm:grid-rows-4">
+      <div className="flex gap-x-6 items-center xsm:grid xsm:grid-rows-4 sm:grid sm:grid-rows-4">
         <p>Filter by:</p>
-        <div className="flex items-center gap-x-2 xsm:flex-row-reverse xsm:justify-end">
+        <div className="flex items-center gap-x-2 xsm:flex-row-reverse xsm:justify-end  sm:flex-row-reverse sm:justify-end">
           <input
             type="checkbox"
             onChange={(e) => {
