@@ -13,7 +13,6 @@ const Detail = () => {
   const { id } = useParams();
 
   const [info, setInfo] = useState({});
-  const [review, setReview] = useState([]);
   const getDetail = async () => {
     try {
       const res = await api.get(`detail/${id}`).then((res) => {
@@ -61,7 +60,7 @@ const Detail = () => {
         <Menu menus={info?.menus} />
 
         <p className="font-semibold text-[18px]">Reviews</p>
-        {info?.customerReviews.map((review, i) => {
+        {info?.customerReviews?.map((review, i) => {
           console.log(review);
           return <Review review={review} key={i} />;
         })}
